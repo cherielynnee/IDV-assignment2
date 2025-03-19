@@ -3,10 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Web Page</title>
+    <title>Assignment 2 - Data Visualization Critique</title>
+    
+    <style>
+        /* General styling */
+        body {
+            background-color: #F6ECDF;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Full-screen slides */
+        .section {
+            display: none; /* Hide sections by default */
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Show only the active slide */
+        .active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #1e5c64;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #7b2101;
+            margin: 5px 0;
+            font-family: Calibri, sans-serif;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #000000;
+            font-family: Calibri, sans-serif;
+            max-width: 70%;
+        }
+
+        a {
+            color: #e0822c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Arrows */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #1e5c64;
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            user-select: none;
+        }
+
+        .arrow:hover {
+            background-color: #e0822c;
+            color: white;
+        }
+
+        .left-arrow { left: 50px; }
+        .right-arrow { right: 50px; }
+
+        /* Image critique section */
+        .container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+        }
+
+        /* Numbered markers */
+        .marker {
+            position: absolute;
+            background-color: white;
+            color: #7b2101;
+            font-size: 14px;
+            font-weight: bold;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #7b2101;
+        }
+
+        /* Position markers */
+        .marker-1 { top: 73%; left: 85%; } /* Legend */
+        .marker-2 { top: 80%; left: 85%; } /* A point of critique on the map */
+        .marker-3 { top: 87%; left: 85%; } /* Another critique */
+        .marker-4 { top: 37.5%; left: 0.3%; } /* Left center near "Previous" text */
+
+        /* Tooltip Pop-ups */
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        /* Adjust tooltip positions (to the right of markers) */
+        #tooltip-1 { top: 73%; left: 90%; }
+        #tooltip-2 { top: 80%; left: 90%; }
+        #tooltip-3 { top: 87%; left: 90%; }
+        #tooltip-4 { top: 20%; left: 5.3%; } /* Tooltip to the right of Marker 4 */
+
+        /* Separate Pop-up Images */
+        .tooltip-image {
+            display: none;
+            position: absolute;
+            background-color: white;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            max-width: 500px; /* Adjust size */
+            border-radius: 5px;
+            z-index: 101; /* Ensure it's above other elements */
+        }
+
+        /* Adjust pop-up image positions */
+        #tooltip-image-1 { top: 5%; left: 70%; } /* Adjust as needed */
+        #tooltip-image-2 { top: 55%; left: 65%; }
+        #tooltip-image-3 { top: 60%; left: 70%; }
+        #tooltip-image-4 { top: 45%; left: 5.3%; }
+
+        /* Centered caption */
+        .caption {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my first webpage.</p>
+
+    <!-- First Intro Slide -->
+    <div id="intro1" class="section active">
+        <h1>Critique of Interactive Data Visualization</h1>
+        <h2>Assignment 2 for 02.526 Interactive Data Visualization</h2>
+        <h2>By Cherie Lynne Gomintong | Singapore University of Technology and Design | 20 March 2025</h2>
+
+        <div class="arrow right-arrow" onclick="nextSlide()">→</div>
+    </div>
+
+    <!-- Second Intro Slide -->
+    <div id="intro2" class="section">
+        <p>
+            This assignment critiques some data visualizations from  
+            <a href="https://kontinentalist.com/stories/is-land-reclamation-in-singapore-worsening-the-global-sand-mining-crisis" target="_blank">
+            Terraforming Singapore: Is the future made of sand?</a>  
+            by Nabilah Said from the Kontinentalist.
+            This is one of my favorite storytelling data visualizations with interactive features, so it is personally difficult to critique. 
+            But for this assignment, I pick two data visualizations from the online magazine and discuss some points of improvement from a user's perspective.
+        </p>
+
+        <div class="arrow left-arrow" onclick="prevSlide()">←</div>
+        <div class="arrow right-arrow" onclick="nextSlide()">→</div>
+    </div>
+
+    <!-- Critique 1 Slide -->
+    <div id="critique1" class="section">
+        <div class="arrow left-arrow" onclick="prevSlide()">←</div>
+
+        <div class="container">
+            <img src="image1.png" alt="Critique Image" class="image">
+
+            <div class="marker marker-1" onclick="showTooltip(1)">1</div>
+            <div class="marker marker-2" onclick="showTooltip(2)">2</div>
+            <div class="marker marker-3" onclick="showTooltip(3)">3</div>
+            <div class="marker marker-4" onclick="showTooltip(4)">4</div>
+
+            <!-- Tooltip Popups -->
+            <div id="tooltip-1" class="tooltip">
+                <strong>"Reclamation project":</strong> When these "x" markers are clicked, they're not highlighted. I can easily mistake the project description for other markers shown in the map.
+                <br><br><strong>Suggestion:</strong> When selected, change marker color from white to another color, such as yellow.
+            </div>
+            <div id="tooltip-2" class="tooltip"><strong>Legend for 1957 to 2023:</strong> Good and intuitive color gradation. The darker the color, the longer that piece of land has been there.
+            </div>
+            <div id="tooltip-3" class="tooltip">
+                <strong>"Future":</strong> Poor choice of color. It easily blends in with the background, i.e. with the seas and the non-Singapore pieces of land.
+                <br><br><strong>Suggestion:</strong> Choose a color that will have better contrast with the background.
+            </div>
+            <div id="tooltip-4" class="tooltip">
+                <strong>"Previous":</strong> Why is this here? Unnecessary placement. I accidently clicked it and was transferred to another online magazine on Cambodia's monkey farms.
+                <br><br><strong>Suggestion:</strong> Omit.
+            </div>
+
+            <!-- Separate Pop-up Images -->
+            <img id="tooltip-image-1" class="tooltip-image" src="tooltip-image1.png" alt="Issue with reclamation project">
+            <img id="tooltip-image-4" class="tooltip-image" src="tooltip-image4.png" alt="Unnecessary placement critique">
+        </div>
+
+        <div class="caption">
+            <strong>Figure 1. Map of key reclamation phases.</strong> Click on the numbered markers to view critiques.
+        </div>
+
+        <div class="arrow right-arrow" onclick="nextSlide()">→</div>
+    </div>
+
+    <!-- Critique 2 Slide -->
+    <div id="critique2" class="section">
+        <div class="arrow left-arrow" onclick="prevSlide()">←</div>
+
+        <div class="container">
+            <img src="image2.png" alt="Critique Image" class="image">
+
+            <div class="marker marker-1" onclick="showTooltip(1)">1</div>
+            <div class="marker marker-2" onclick="showTooltip(2)">2</div>
+            <div class="marker marker-3" onclick="showTooltip(3)">3</div>
+            <div class="marker marker-4" onclick="showTooltip(4)">4</div>
+
+            <!-- Tooltip Popups -->
+            <div id="tooltip-1" class="tooltip"><strong>"Reclamation project":</strong> When these x markers are clicked, they're not highlighted. I can easily mistake the project description for other markers in the map.</div>
+            <div id="tooltip-2" class="tooltip"><strong>Legend for 1957 to 2023:</strong> Good and intuitive color gradation. The darker the color, the longer that piece of land has been there.</div>
+            <div id="tooltip-3" class="tooltip"><strong>"Future":</strong> Poor choice of color. It easily blends in with the background, i.e. with the seas and the non-Singapore pieces of land.</div>
+            <div id="tooltip-4" class="tooltip"><strong>"Previous":</strong> Why is this here? Unnecessary placement. I accidently clicked it and was transferred to another online magazine on Cambodia's monkey farms.</div>
+        </div>
+
+        <div class="caption">
+            <strong>Figure 2. Chart of amount of sand imported against country's land area.</strong> Click on the numbered markers to view critiques.
+        </div>
+
+        <div class="arrow right-arrow" onclick="nextSlide()">→</div>
+    </div>
+
+    <script>
+        let slides = ["intro1", "intro2", "critique1", "critique2"];
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            document.getElementById(slides[index]).classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function showTooltip(num) {
+    // Hide all tooltips and images first
+    document.querySelectorAll('.tooltip, .tooltip-image').forEach(el => {
+        el.style.display = "none";
+    });
+
+    // Show the selected tooltip and image
+    let tooltip = document.getElementById(`tooltip-${num}`);
+    let image = document.getElementById(`tooltip-image-${num}`);
+
+    if (tooltip) tooltip.style.display = "block";
+    if (image) image.style.display = "block";
+}
+
+
+        document.body.addEventListener("click", function(event) {
+            if (!event.target.classList.contains("marker")) {
+                document.querySelectorAll(".tooltip").forEach(tooltip => {
+                    tooltip.style.display = "none";
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
